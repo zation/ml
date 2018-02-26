@@ -1,4 +1,5 @@
 from utils import get_hidden_layer_delta, get_connection_str
+from functools import reduce
 
 class ConstantNode:
     def __init__(self, layer_index, node_index):
@@ -8,7 +9,7 @@ class ConstantNode:
         self.output = 0
 
     def append_downstream_connection(self, connection):
-        seld.downstream.append(connection)
+        self.downstream.append(connection)
 
     def calculate_hidden_layer_delta(self):
         downstream_delta = reduce(get_hidden_layer_delta, self.downstream, 0)
@@ -17,4 +18,4 @@ class ConstantNode:
     def __str__(self):
         node_str = '%u - %u: output: 1' % (self.layout_index, self.node_index)
         downstream_str = reduce(get_connection_str, self.downstream, '')
-        return node_str + '\n\tdownsteam: ' + downstream_str
+        return node_str + '\n\tdownstream: ' + downstream_str

@@ -1,4 +1,5 @@
 from utils import get_connection_str, get_output, get_hidden_layer_delta, sigmoid
+from functools import reduce
 
 class Node:
     def __init__(self, layer_index, node_index):
@@ -27,7 +28,7 @@ class Node:
         self.delta = self.output * (1 - self.output) * downstream_delta
 
     def calculate_output_layer_delta(self, label):
-        self.delta = self.output * (1 - self.output) * (label - self.ouput)
+        self.delta = self.output * (1 - self.output) * (label - self.output)
 
     def __str__(self):
         node_str = '%u-%u: output: %f delta: %f' % (self.layer_index, self.node_index, self.output, self.delta)

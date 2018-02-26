@@ -55,9 +55,9 @@ class LabelLoader(Loader):
         label_value = label
         for i in range (10):
             if i == label_value:
-                label.vector.append(0.9)
+                label_vector.append(0.9)
             else:
-                label.vector.append(0.1)
+                label_vector.append(0.1)
         return label_vector
 
 def get_train_dataset():

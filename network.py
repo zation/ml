@@ -1,3 +1,7 @@
+from connections import Connections
+from layer import Layer
+from connection import Connection
+
 class Network:
     def __init__(self, layers_node_count):
         self.connections = Connections()
@@ -8,10 +12,10 @@ class Network:
             self.layers.append(Layer(i, layers_node_count[i]))
         for layer in range(layer_count - 1):
             connections = [Connection(upstream_node, downstream_node)
-                            for upsteam_node in self.layers[layer].nodes
+                            for upstream_node in self.layers[layer].nodes
                             for downstream_node in self.layers[layer + 1].nodes[:-1]]
             for connection in connections:
-                self.connections.append_conncetion(connection)
+                self.connections.append_connection(connection)
                 connection.downstream_node.append_upstream_connection(connection)
                 connection.upstream_node.append_downstream_connection(connection)
 
@@ -26,7 +30,7 @@ class Network:
         self.update_weight(rate)
 
     def calculate_deta(self, label):
-        output_nodes = self.layer[-1].nodes
+        output_nodes = self.layers[-1].nodes
         for i in range(len(label)):
             output_nodes[i].calculate_output_layer_delta(label[i])
         for layer in self.layers[-2::-1]:

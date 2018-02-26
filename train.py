@@ -1,4 +1,5 @@
 from loader import get_train_dataset, get_test_dataset
+from network import Network
 
 def get_result(vector):
     max_value_index = 0

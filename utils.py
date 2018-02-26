@@ -1,3 +1,5 @@
+from math import exp
+
 def get_connection_str(result, connection):
     return result + '\n\t' + str(connection)
 
