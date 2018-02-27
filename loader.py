@@ -1,8 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: UTF-8 -*-
 
-from struct import unpack
-from datetime import datetime
 
 class Loader:
     def __init__(self, path, count):
@@ -15,8 +13,6 @@ class Loader:
         f.close()
         return content
 
-    def to_int(self, byte):
-        return unpack('B', byte)[0]
 
 class ImageLoader(Loader):
     def get_picture(self, content, index):
@@ -41,6 +37,7 @@ class ImageLoader(Loader):
         for index in range(self.count):
             dataset.append(self.get_one_sample(self.get_picture(content, index)))
         return dataset
+
 
 class LabelLoader(Loader):
     def load(self):

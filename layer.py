@@ -1,6 +1,7 @@
 from node import Node
 from constant_node import ConstantNode
 
+
 class Layer:
     def __init__(self, layer_index, node_count):
         self.layer_index = layer_index

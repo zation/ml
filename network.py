@@ -2,6 +2,7 @@ from connections import Connections
 from layer import Layer
 from connection import Connection
 
+
 class Network:
     def __init__(self, layers_node_count):
         self.connections = Connections()
@@ -12,8 +13,8 @@ class Network:
             self.layers.append(Layer(i, layers_node_count[i]))
         for layer in range(layer_count - 1):
             connections = [Connection(upstream_node, downstream_node)
-                            for upstream_node in self.layers[layer].nodes
-                            for downstream_node in self.layers[layer + 1].nodes[:-1]]
+                           for upstream_node in self.layers[layer].nodes
+                           for downstream_node in self.layers[layer + 1].nodes[:-1]]
             for connection in connections:
                 self.connections.append_connection(connection)
                 connection.downstream_node.append_upstream_connection(connection)
@@ -26,10 +27,10 @@ class Network:
 
     def train_one_sample(self, label, sample, rate):
         self.predict(sample)
-        self.calculate_deta(label)
+        self.calculate_delta(label)
         self.update_weight(rate)
 
-    def calculate_deta(self, label):
+    def calculate_delta(self, label):
         output_nodes = self.layers[-1].nodes
         for i in range(len(label)):
             output_nodes[i].calculate_output_layer_delta(label[i])
@@ -51,7 +52,7 @@ class Network:
 
     def get_gradient(self, label, sample):
         self.predict(sample)
-        self.calculate_deta(label)
+        self.calculate_delta(label)
         self.calculate_gradient()
 
     def predict(self, sample):

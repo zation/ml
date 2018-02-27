@@ -1,5 +1,6 @@
 import random
 
+
 class Connection:
     def __init__(self, upstream_node, downstream_node):
         self.upstream_node = upstream_node

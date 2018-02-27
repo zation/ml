@@ -1,6 +1,7 @@
 from utils import get_connection_str, get_output, get_hidden_layer_delta, sigmoid
 from functools import reduce
 
+
 class Node:
     def __init__(self, layer_index, node_index):
         self.layer_index = layer_index

@@ -1,6 +1,7 @@
 from utils import get_hidden_layer_delta, get_connection_str
 from functools import reduce
 
+
 class ConstantNode:
     def __init__(self, layer_index, node_index):
         self.layer_index = layer_index
